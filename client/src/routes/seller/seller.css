@@ -1,3 +1,14 @@
+/* Books */
+.book-card {
+    width: 95%;
+    box-sizing: border-box;
+    margin: 0.8rem auto;
+    padding: 0.5rem;
+    backdrop-filter: blur(50px);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+}
+
 /* New Book */
 input[name="price"]{
     width: 100%;
