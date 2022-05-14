@@ -30,7 +30,7 @@ function Navigation(props) {
           style={{ width: "60%", display: "block", margin: "2px auto" }}
         />
       </div>
-      <label id="hello">
+      <label id="hello" className="inline-block">
         Hi <span style={{ fontSize: "inherit" }}>&#128075;, </span>UserName
       </label>
       <hr style={HR_STYLE} />
@@ -40,10 +40,10 @@ function Navigation(props) {
             <div
               className="navigation-route"
               key={index}
-              onClick={props.Navigate(route.name.toLowerCase())}
+              onClick={()=>{props.Navigate(route.name.toLowerCase())}}
             >
               {/* <img src={route.icon} alt="icon"></img> */}
-              <label>{route.name}</label>
+              <label className="inline-block">{route.name}</label>
             </div>
           );
         })}
@@ -51,7 +51,7 @@ function Navigation(props) {
       <hr style={HR_STYLE} />
       <div>
         {/* <img src={route.icon} alt="icon"></img> */}
-        <label>Log Out</label>
+        <label onClick={()=>{props.Navigate("login")}}>Log Out</label>
       </div>
     </div>
   );
