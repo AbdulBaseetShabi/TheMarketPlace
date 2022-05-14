@@ -6,6 +6,50 @@
 
 #content{
   height: 100%;
-  width: 80%;
+  min-width: 80%;
+  flex-grow: 1;
   background-color: lightblue;
+}
+
+/* Helper */
+.inline-block {
+  width: 100%;
+  display: inline-block;
+}
+
+.header-level-one{
+  font-size: 2rem;
+}
+
+.header-level-two{
+  font-size: 1.4rem;
+}
+
+.tiny-text{
+  font-size: 0.8rem;
+}
+
+.button {
+  text-align: center;
+  padding: 10px 50px;
+  margin: 5px auto;
+  font-size: 1rem;
+  border-radius: 1.5rem;
+  width: 50%;
+  box-sizing: border-box;  
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.form-input{
+  margin: 5px 0;
+}
+
+input[type="text"], input[type="password"], input[type="email"]{
+  width: 100%;
+  border: 1px solid #cccccc; 
+  height: 35px; 
+  border-radius: 2px;
+  box-sizing: border-box;
+  outline: 0;
 }
