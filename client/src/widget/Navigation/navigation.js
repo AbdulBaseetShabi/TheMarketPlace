@@ -50,10 +50,7 @@ function Navigation(props) {
         })}
       </div>
       <hr style={HR_STYLE} />
-      <div>
-        {/* <img src={route.icon} alt="icon"></img> */}
-        <label onClick={()=>{props.Navigate("login")}}>Log Out</label>
-      </div>
+      <div id="logout" onClick={()=>{props.Navigate("login")}}>Log Out</div>
     </div>
   );
 }

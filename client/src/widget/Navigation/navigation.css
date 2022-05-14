@@ -37,3 +37,13 @@
     -webkit-backdrop-filter: blur(0.5px);
     border-left: 5px solid green;
 }
+
+#logout{
+    background-color: lightcoral;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    cursor: pointer;
+    padding: 3px 0;
+    border-radius: 2px;
+}
