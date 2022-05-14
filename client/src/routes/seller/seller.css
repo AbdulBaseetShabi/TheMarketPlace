@@ -1,3 +1,5 @@
+
+/* Seller */
 #seller{
     height: 100%;
     width: 100%;
@@ -42,7 +44,7 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(0.5px);
     -webkit-backdrop-filter: blur(0.5px);
-    border-left: 5px solid lightblue;
+    border-left: 5px solid rgb(50, 159, 196);
 }
 
 #seller-submenu{

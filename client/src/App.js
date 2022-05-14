@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 
-import Navigation from "./widget/Navigation/navigation";
+import Navigation from "./widget/navigation/navigation";
 
 import Login from "../src/routes/login/login";
 import Signup from "../src/routes/signup/signup";
