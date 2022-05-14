@@ -33,7 +33,7 @@ class Login extends React.Component {
                   type="text"
                   name="email"
                   placeholder="Email (ex. ...@mylaurier.ca)"
-                  autocomplete="off"
+                  autoComplete="off"
                 ></input>
               </div>
               <div className="form-input">
@@ -42,7 +42,7 @@ class Login extends React.Component {
                   type="password"
                   name="password"
                   placeholder="Password"
-                  autocomplete="off"
+                  autoComplete="off"
                 ></input>
               </div>
             </div>

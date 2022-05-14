@@ -34,6 +34,7 @@ class Signup extends React.Component {
                     type="text"
                     name="firstname"
                     placeholder="First Name"
+                    autoComplete="off"
                   ></input>
                 </div>
                 <div className="form-input" style={{ width: "49%" }}>
@@ -42,6 +43,7 @@ class Signup extends React.Component {
                     type="email"
                     name="lastname"
                     placeholder="Last Name"
+                    autoComplete="off"
                   ></input>
                 </div>
               </div>
@@ -52,6 +54,7 @@ class Signup extends React.Component {
                     type="text"
                     name="username"
                     placeholder="User Name"
+                    autoComplete="off"
                   ></input>
                 </div>
                 <div className="form-input" style={{ width: "49%" }}>
@@ -60,6 +63,7 @@ class Signup extends React.Component {
                     type="email"
                     name="email"
                     placeholder="Email (ex. ...@mylaurier.ca)"
+                    autoComplete="off"
                   ></input>
                 </div>
               </div>
@@ -69,6 +73,7 @@ class Signup extends React.Component {
                   type="text"
                   name="password"
                   placeholder="Wilfrid Laurier University"
+                  autoComplete="off"
                 ></input>
               </div>
               <div className="form-input">
@@ -77,6 +82,7 @@ class Signup extends React.Component {
                   type="password"
                   name="password"
                   placeholder="Password"
+                  autoComplete="off"
                 ></input>
               </div>
               <div className="form-input">
@@ -85,6 +91,7 @@ class Signup extends React.Component {
                   type="password"
                   name="password_2"
                   placeholder="Password"
+                  autoComplete="off"
                 ></input>
               </div>
             </div>

@@ -5,7 +5,7 @@ import Navigation from "./widget/Navigation/navigation";
 
 import Login from "../src/routes/login/login";
 import Signup from "../src/routes/signup/signup";
-import Market from "../src/routes/market/market"
+import Market from "../src/routes/market/market";
 
 class App extends React.Component {
   constructor(props) {
@@ -29,19 +29,22 @@ class App extends React.Component {
     let route = null;
 
     if (this.state.current_route === "login") {
-      route = <Login Navigate={this.Navigate} />
-    }else if (this.state.current_route === "signup") {
-      route = <Signup Navigate={this.Navigate} />
-    }else if (this.state.current_route === "market") {
-      route = <Market Navigate={this.Navigate} />
+      route = <Login Navigate={this.Navigate} />;
+    } else if (this.state.current_route === "signup") {
+      route = <Signup Navigate={this.Navigate} />;
+    } else if (this.state.current_route === "market") {
+      route = <Market Navigate={this.Navigate} />;
     }
 
     return (
       <div id="main-app">
-        {this.state.show_nav ? <Navigation Navigate={this.Navigate} /> : null}
-        <div id="content">
-          {route}
-        </div>
+        {this.state.show_nav ? (
+          <Navigation
+            Navigate={this.Navigate}
+            CurrentRoute={this.state.current_route}
+          />
+        ) : null}
+        <div id="content">{route}</div>
       </div>
     );
   }
