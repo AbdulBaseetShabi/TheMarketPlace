@@ -1,5 +1,5 @@
 import React from "react";
-import Book from "./book/book";
+import Book from "../market/sub/book";
 
 import "./market.css";
 import GlobalVariables from "../../global/global-variables";
