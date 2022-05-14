@@ -5,14 +5,19 @@ function Book(props) {
   return (
     <div className="book">
       <div
-          className="book-image"
-          style={{
-            backgroundImage: `url(${
-              GlobalVariables.GOOGLE_DRIVE_PREFIX + book.imageUrl
-            })`,
-          }}
-        ></div>
-      <label className="inline-block" style={{textAlign: "center", fontWeight: "bold", marginTop: "5px"}}>{book.name}</label>
+        className="book-image"
+        style={{
+          backgroundImage: `url(${
+            GlobalVariables.GOOGLE_DRIVE_PREFIX + book.imageUrl
+          })`,
+        }}
+      ></div>
+      <label
+        className="inline-block"
+        style={{ textAlign: "center", fontWeight: "bold", marginTop: "5px" }}
+      >
+        {book.bookName} | ${book.price}
+      </label>
       <hr
         style={{
           opacity: "0.5",
@@ -32,9 +37,29 @@ function Book(props) {
           borderTop: "1px solid black",
         }}
       />
-      <div style={{paddingBottom: "5px"}}>
-        <div className="button" style={{ backgroundColor: "#2CB67D", width: "80%", fontWeight: "normal", padding: "5px 50px" }}>Purchase</div>
-        <div className="button" style={{ backgroundColor: "#232946", width: "80%", fontWeight: "normal", padding: "5px 50px" }} >View Info</div>
+      <div style={{ paddingBottom: "5px" }}>
+        <div
+          className="button"
+          style={{
+            backgroundColor: "#2CB67D",
+            width: "80%",
+            fontWeight: "normal",
+            padding: "5px 50px",
+          }}
+        >
+          Purchase
+        </div>
+        <div
+          className="button"
+          style={{
+            backgroundColor: "#232946",
+            width: "80%",
+            fontWeight: "normal",
+            padding: "5px 50px",
+          }}
+        >
+          View Info
+        </div>
       </div>
     </div>
   );

@@ -22,12 +22,12 @@ const ROUTES = [
   },
   {
     name: "Published",
-    route: "published",
+    route: "publish",
     is_sub: true,
   },
   {
     name: "Unpublished",
-    route: "unpublished",
+    route: "unpublish",
     is_sub: true,
   },
   {

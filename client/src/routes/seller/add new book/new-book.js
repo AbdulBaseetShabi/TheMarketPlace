@@ -136,7 +136,7 @@ class AddNewBook extends React.Component {
                 <input
                   type="radio"
                   name="condition"
-                  value="New"
+                  value="new"
                   onChange={this.updateForm}
                 />
                 <label>New</label>
@@ -145,7 +145,7 @@ class AddNewBook extends React.Component {
                 <input
                   type="radio"
                   name="condition"
-                  value="Used"
+                  value="used"
                   onChange={this.updateForm}
                 />
                 <label>Used</label>
@@ -154,7 +154,7 @@ class AddNewBook extends React.Component {
                 <input
                   type="radio"
                   name="condition"
-                  value="Wornout"
+                  value="wornout"
                   onChange={this.updateForm}
                 />
                 <label>Wornout</label>
