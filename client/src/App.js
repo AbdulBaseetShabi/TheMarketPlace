@@ -44,7 +44,12 @@ class App extends React.Component {
             CurrentRoute={this.state.current_route}
           />
         ) : null}
-        <div id="content">{route}</div>
+        <div
+          id="content"
+          style={{ width: this.state.show_nav ? "80%" : "100%" }}
+        >
+          {route}
+        </div>
       </div>
     );
   }
