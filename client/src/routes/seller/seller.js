@@ -1,6 +1,6 @@
 import React from "react";
-import AddNewBook from "./add new book/new-book";
-import Books from "./books/books";
+import AddNewBook from "../seller/sub/new-book";
+import Books from "../seller/sub/books";
 
 import "./seller.css";
 
@@ -92,7 +92,7 @@ class Seller extends React.Component {
             className="inline-block header-level-two"
             style={{ textAlign: "center" }}
           >
-            Menu
+            Seller
           </label>
           <hr style={HR_STYLE} />
           <div>

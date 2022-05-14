@@ -7,6 +7,7 @@ import Login from "../src/routes/login/login";
 import Signup from "../src/routes/signup/signup";
 import Market from "../src/routes/market/market";
 import Seller from "../src/routes/seller/seller";
+import Settings from "../src/routes/settings/settings";
 
 class App extends React.Component {
   constructor(props) {
@@ -34,9 +35,11 @@ class App extends React.Component {
     } else if (this.state.current_route === "signup") {
       route = <Signup Navigate={this.Navigate} />;
     } else if (this.state.current_route === "market") {
-      route = <Market Navigate={this.Navigate} />;
+      route = <Market />;
     } else if (this.state.current_route === "seller") {
-      route = <Seller Navigate={this.Navigate} />;
+      route = <Seller />;
+    } else if (this.state.current_route === "settings") {
+      route = <Settings />;
     }
 
     return (
