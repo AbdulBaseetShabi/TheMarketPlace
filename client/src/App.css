@@ -9,6 +9,8 @@
   min-width: 80%;
   flex-grow: 1;
   background-color: lightblue;
+  padding: 7px;
+  box-sizing: border-box;
 }
 
 /* Helper */

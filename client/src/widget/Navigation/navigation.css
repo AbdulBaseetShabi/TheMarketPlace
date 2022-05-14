@@ -23,18 +23,17 @@
     cursor: pointer;
 }
 
+.navigation-route:hover{
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0.5px);
+    -webkit-backdrop-filter: blur(0.5px);
+}
+
 .current-route{
     background: rgba(0, 0, 0, 0.30);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(0.5px);
     -webkit-backdrop-filter: blur(0.5px);
     border-left: 5px solid green;
-}
-
-.navigation-route:hover{
-    background: rgba(255, 255, 255, 0.30);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(0.5px);
-    -webkit-backdrop-filter: blur(0.5px);
-    border-left: none;
 }
