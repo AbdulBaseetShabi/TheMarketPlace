@@ -1,21 +1,15 @@
 import "./modal.css";
 
 function Modal(props) {
-  let content = props.content;
   return (
     <div id="modal">
-      {content === undefined || content === null ? (
+      {props.child ?? (
         <div id="loading">
           <div id="loading-icon"></div>
-          <label
-            className="header-level-one"
-            style={{ fontWeight: "bolder" }}
-          >
+          <label className="header-level-one" style={{ fontWeight: "bolder" }}>
             Loading
           </label>
         </div>
-      ) : (
-        { content }
       )}
     </div>
   );

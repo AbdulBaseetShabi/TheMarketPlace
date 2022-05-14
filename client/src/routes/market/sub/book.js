@@ -1,5 +1,7 @@
 import GlobalVariables from "../../../global/global-variables";
 
+import "../market.css";
+
 function Book(props) {
   let book = props.info;
   return (
@@ -26,8 +28,9 @@ function Book(props) {
           borderTop: "1px solid black",
         }}
       />
-      <label className="inline-block" style={{ textAlign: "center"}}>
-      <span style={{ fontWeight: "600" }}>ISBN: </span>{book.isbn}
+      <label className="inline-block" style={{ textAlign: "center" }}>
+        <span style={{ fontWeight: "600" }}>ISBN: </span>
+        {book.isbn}
       </label>
       <hr
         style={{
@@ -58,6 +61,7 @@ function Book(props) {
             fontWeight: "normal",
             padding: "5px 50px",
           }}
+          onClick={() => props.purchase(book._id)}
         >
           Purchase
         </div>

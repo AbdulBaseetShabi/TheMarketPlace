@@ -39,6 +39,7 @@
   box-sizing: border-box;  
   cursor: pointer;
   font-weight: bold;
+  user-select: none;
 }
 
 .form-input{

@@ -2,6 +2,7 @@ const GOOGLE_DRIVE_PREFIX = "https://drive.google.com/uc?export=view&id=";
 
 const BOOKS = [
   {
+    _id: 1,
     bookName: "Diary of a Wimpy kid",
     tags: ["CP 214", "CP 346", "Systems Programming"],
     condition: "Used",
