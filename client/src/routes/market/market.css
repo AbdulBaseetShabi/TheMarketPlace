@@ -1,0 +1,84 @@
+/* Book */
+.book{
+    background-color: #222844;
+}
+
+.book-image{
+    height: 150px;
+    width: 100%;
+    background-color: #fffffed5;
+}
+
+.tag{
+    background-color: #7F5AF0;
+    display: inline-block;
+    margin: 2px;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.tags-container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Market */
+#market{
+    width: 100%;
+}
+
+#search{
+    display: flex;
+    width: 70%;
+    margin: 10px auto;
+    box-sizing: border-box;
+}
+
+#search label{
+    border-radius: 0 6px 6px 0;
+    width: 20%;
+    background-color: #16161a;
+    height: 35px;
+    display: block;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+#search input{
+    border-radius: 6px 0 0 6px;
+    width: 80%;
+    box-sizing: border-box;
+}
+
+#search-result{
+    width: 100%;
+    max-height: 90vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+
+#page-nav{
+    text-align: center;
+    display: flex;
+    /* justify-content: center; */
+    position: absolute;
+    bottom: 5%;
+    left: 55%;
+}
+
+img[alt="left"], img[alt="right"]{
+    cursor: pointer;
+}
+
+img[alt="right"]{
+    transform: rotate(180deg);
+}
+
+input[name="pagenumber"]{
+    margin-right: 5px;
+}
