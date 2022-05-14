@@ -1,4 +1,6 @@
 import React from "react";
+import AddNewBook from "./add new book/new-book";
+import Books from "./books/books";
 
 import "./seller.css";
 
@@ -66,6 +68,23 @@ class Seller extends React.Component {
       }
     }
 
+    let route = null;
+    if (this.state.current_route === "reviews") {
+      route = <div>Here</div>;
+    } else if (this.state.current_route === "anbts") {
+      route = <AddNewBook />;
+    } else {
+      route = (
+        <Books
+          filter={
+            this.state.current_route === "books"
+              ? "all"
+              : this.state.current_route
+          }
+        />
+      );
+    }
+
     return (
       <div id="seller">
         <div id="seller-menu">
@@ -111,7 +130,7 @@ class Seller extends React.Component {
             </div>
           </div>
         </div>
-        <div id="seller-content"></div>
+        <div id="seller-content">{route}</div>
       </div>
     );
   }
