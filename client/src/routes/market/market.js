@@ -3,6 +3,8 @@ import Book from "../market/sub/book";
 
 import "./market.css";
 import GlobalVariables from "../../global/global-variables";
+import Modal from "../../widget/modal/modal";
+import Purchase from "./sub/purchase";
 
 class Market extends React.Component {
   constructor(props) {
@@ -10,7 +12,13 @@ class Market extends React.Component {
     this.state = {
       current_page: 0,
       results: null,
+      purchase_screen: false,
+      book_id: null,
     };
+    this.changePage = this.changePage.bind(this);
+    this.closePurchaseScreen = this.closePurchaseScreen.bind(this);
+    this.purchaseBook = this.purchaseBook.bind(this);
+    this.finalizePurchase = this.finalizePurchase.bind(this);
   }
 
   changePage(pace) {
@@ -21,8 +29,24 @@ class Market extends React.Component {
     });
   }
 
+  closePurchaseScreen() {
+    this.setState({ purchase_screen: false, book_id: null });
+  }
+
+  purchaseBook(bookID) {
+    this.setState({ purchase_screen: true, book_id: bookID });
+  }
+
+  finalizePurchase() {
+    alert(this.state.book_id);
+  }
+
   componentDidMount() {
-    this.setState({ results: GlobalVariables.BOOKS });
+    this.setState({
+      results: GlobalVariables.BOOKS.filter((book) => {
+        return book.status === "publish";
+      }),
+    });
   }
 
   render() {
@@ -37,6 +61,16 @@ class Market extends React.Component {
         : Math.ceil(this.state.results.length / 10);
     return (
       <div id="market">
+        {this.state.purchase_screen ? (
+          <Modal
+            child={
+              <Purchase
+                purchaseBook={this.finalizePurchase}
+                close={this.closePurchaseScreen}
+              />
+            }
+          />
+        ) : null}
         <div id="search">
           <input
             type="text"
@@ -47,9 +81,9 @@ class Market extends React.Component {
         </div>
         <hr
           style={{
-            opacity: "0.5",
+            opacity: "0.2",
             width: "80%",
-            borderTop: "1px solid black",
+            borderBottom: "1px solid white",
           }}
         />
         <div id="search-result">
@@ -59,15 +93,13 @@ class Market extends React.Component {
                 key={index + start}
                 style={{ width: "18%", margin: "0 1% 10px 1%" }}
               >
-                <Book info={book} />
+                <Book info={book} purchase={this.purchaseBook} />
               </div>
             );
           })}
         </div>
         {max_pages > 0 ? (
-          <div
-            id="page-nav"
-          >
+          <div id="page-nav">
             {this.state.current_page > 0 ? (
               <img
                 alt="left"
