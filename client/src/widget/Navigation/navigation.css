@@ -1,0 +1,35 @@
+#navigation{
+    background-color: #232946;
+    width: 20%;
+    height: 100%;
+    margin: 0;
+    padding: 3px 5px;
+    box-sizing: border-box;
+}
+
+#hello{
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+}
+
+.navigation-route{
+    user-select: none;
+    padding: 7px 0;
+    cursor: pointer;
+}
+
+.navigation-route label{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.navigation-route:hover{
+    background: rgba(0, 0, 0, 0.30);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0.5px);
+    -webkit-backdrop-filter: blur(0.5px);
+}
+
