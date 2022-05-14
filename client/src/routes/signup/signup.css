@@ -1,0 +1,19 @@
+#signup{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 3%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#signup-content {
+    width: 60%;
+    height: 100%;
+    background-color: #232946;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
