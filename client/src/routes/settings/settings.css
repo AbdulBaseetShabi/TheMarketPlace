@@ -1,0 +1,47 @@
+#settings{
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+#settings-menu, #settings-content{
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+#settings-content{
+    width: 75%;
+    background-color:#374274;
+    position: relative;
+}
+
+#settings-menu{
+    width: 25%;
+    background-color: #0d0d0d;
+}
+
+.settings-route{
+    user-select: none;
+    padding: 7px 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+}
+
+.settings-route:hover{
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0.5px);
+    -webkit-backdrop-filter: blur(0.5px);
+}
+
+.current-settings-route{
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0.5px);
+    -webkit-backdrop-filter: blur(0.5px);
+    border-left: 5px solid rgb(50, 159, 196);
+}
