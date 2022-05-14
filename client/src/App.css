@@ -54,3 +54,11 @@ input[type="text"], input[type="password"], input[type="email"]{
   outline: 0;
   padding-left: 10px;
 }
+
+.tag{
+  background-color: #7F5AF0;
+  display: inline-block;
+  margin: 2px;
+  padding: 3px;
+  border-radius: 3px;
+}

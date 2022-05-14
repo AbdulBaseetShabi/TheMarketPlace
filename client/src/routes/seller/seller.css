@@ -1,3 +1,13 @@
+/* New Book */
+input[name="price"]{
+    width: 100%;
+    border: 1px solid #cccccc; 
+    height: 35px; 
+    border-radius: 2px;
+    box-sizing: border-box;
+    outline: 0;
+    padding-left: 10px;
+}
 
 /* Seller */
 #seller{
@@ -14,7 +24,8 @@
 
 #seller-content{
     width: 75%;
-    background-color:burlywood;
+    background-color:#374274;
+    position: relative;
 }
 
 #seller-menu{

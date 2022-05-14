@@ -9,14 +9,6 @@
     background-color: #fffffed5;
 }
 
-.tag{
-    background-color: #7F5AF0;
-    display: inline-block;
-    margin: 2px;
-    padding: 3px;
-    border-radius: 3px;
-}
-
 .tags-container{
     width: 80%;
     margin: 0 auto;
