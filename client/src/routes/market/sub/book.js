@@ -14,9 +14,20 @@ function Book(props) {
       ></div>
       <label
         className="inline-block"
-        style={{ textAlign: "center", fontWeight: "bold", marginTop: "5px" }}
+        style={{ textAlign: "center", marginTop: "5px" }}
       >
-        {book.bookName} | ${book.price}
+        <span style={{ fontWeight: "bold" }}>{book.bookName}</span> | $
+        {book.price}
+      </label>
+      <hr
+        style={{
+          opacity: "0.5",
+          width: "80%",
+          borderTop: "1px solid black",
+        }}
+      />
+      <label className="inline-block" style={{ textAlign: "center"}}>
+      <span style={{ fontWeight: "600" }}>ISBN: </span>{book.isbn}
       </label>
       <hr
         style={{
@@ -26,6 +37,7 @@ function Book(props) {
         }}
       />
       <div className="tags-container">
+        <label className="tag tiny-text">{book.condition}</label>
         {book.tags.map((tag) => {
           return <label className="tag tiny-text">{tag}</label>;
         })}
@@ -48,17 +60,6 @@ function Book(props) {
           }}
         >
           Purchase
-        </div>
-        <div
-          className="button"
-          style={{
-            backgroundColor: "#232946",
-            width: "80%",
-            fontWeight: "normal",
-            padding: "5px 50px",
-          }}
-        >
-          View Info
         </div>
       </div>
     </div>
