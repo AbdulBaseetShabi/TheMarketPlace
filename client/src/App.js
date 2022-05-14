@@ -1,6 +1,10 @@
 import "./App.css";
 import React from "react";
 
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { firebaseConfig } from "./global/firebase-config";
+
 import Navigation from "./widget/navigation/navigation";
 
 import Login from "../src/routes/login/login";
@@ -17,29 +21,49 @@ class App extends React.Component {
       current_route: "login",
     };
     this.Navigate = this.Navigate.bind(this);
+    this.auth = null;
   }
 
   Navigate(route) {
     let show_nav = route !== "login" && route !== "signup";
+
     this.setState({
       current_route: route,
       show_nav: show_nav,
     });
   }
 
+  componentDidMount() {
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    this.auth = auth;
+    console.log(this.auth);
+  }
+
   render() {
     let route = null;
-
-    if (this.state.current_route === "login") {
-      route = <Login Navigate={this.Navigate} />;
-    } else if (this.state.current_route === "signup") {
-      route = <Signup Navigate={this.Navigate} />;
-    } else if (this.state.current_route === "market") {
+    let id = sessionStorage.getItem("tmp_user_id");
+    
+    if (this.state.current_route === "login" && id === null) {
+      route = <Login Navigate={this.Navigate} auth={this.auth} />;
+    } else if (this.state.current_route === "signup" && id === null) {
+      route = <Signup Navigate={this.Navigate} auth={this.auth} />;
+    } else if (this.state.current_route === "market" && id !== null) {
       route = <Market />;
-    } else if (this.state.current_route === "seller") {
+    } else if (this.state.current_route === "seller" && id !== null) {
       route = <Seller />;
-    } else if (this.state.current_route === "settings") {
+    } else if (this.state.current_route === "settings"  && id !== null) {
       route = <Settings />;
+    } else if (id === null) {
+      this.setState({
+        current_route: "login",
+        show_nav: false,
+      }); 
+    } else {
+      this.setState({
+        current_route: "market",
+        show_nav: true,
+      });
     }
 
     return (

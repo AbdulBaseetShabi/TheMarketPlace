@@ -16,9 +16,9 @@ const ROUTES = [
 ];
 
 const HR_STYLE = {
-    opacity: "0.5",
-    width: "80%",
-}
+  opacity: "0.5",
+  width: "80%",
+};
 
 function Navigation(props) {
   return (
@@ -36,12 +36,17 @@ function Navigation(props) {
       <hr style={HR_STYLE} />
       <div id="navigation-routes-container">
         {ROUTES.map((route, index) => {
-          let class_name = route.name.toLowerCase() === props.CurrentRoute ? "navigation-route current-route" : "navigation-route";   
+          let class_name =
+            route.name.toLowerCase() === props.CurrentRoute
+              ? "navigation-route current-route"
+              : "navigation-route";
           return (
             <div
-              className= {class_name}
+              className={class_name}
               key={index}
-              onClick={()=>{props.Navigate(route.name.toLowerCase())}}
+              onClick={() => {
+                props.Navigate(route.name.toLowerCase());
+              }}
             >
               {/* <img src={route.icon} alt="icon"></img> */}
               <label className="inline-block">{route.name}</label>
@@ -50,7 +55,15 @@ function Navigation(props) {
         })}
       </div>
       <hr style={HR_STYLE} />
-      <div id="logout" onClick={()=>{props.Navigate("login")}}>Log Out</div>
+      <div
+        id="logout"
+        onClick={() => {
+          sessionStorage.removeItem("tmp_user_id");
+          props.Navigate("login");
+        }}
+      >
+        Log Out
+      </div>
     </div>
   );
 }
