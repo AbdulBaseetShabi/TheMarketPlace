@@ -36,7 +36,7 @@ function Navigation(props) {
       <hr style={HR_STYLE} />
       <div id="navigation-routes-container">
         {ROUTES.map((route, index) => {
-          let class_name = route.name.toLowerCase() === props.CurrentRoute ? "navigation-route current-route" : "navigation-route"   
+          let class_name = route.name.toLowerCase() === props.CurrentRoute ? "navigation-route current-route" : "navigation-route";   
           return (
             <div
               className= {class_name}
