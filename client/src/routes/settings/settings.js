@@ -1,6 +1,8 @@
 import React from "react";
 
 import './settings.css';
+import Account from "./sub/account";
+import Payment from "./sub/payment";
 const ROUTES = [
   {
     name: "Account Details",
@@ -34,9 +36,9 @@ class Settings extends React.Component {
   render() {
     let route = null;
     if (this.state.current_route === "account") {
-      route = <div>Account</div>;
+      route = <Account/>;
     } else if (this.state.current_route === "payment") {
-      route = <div>Card info</div>;
+      route = <Payment/>;
     }
 
     return (
