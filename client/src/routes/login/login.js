@@ -3,6 +3,7 @@ import React from "react";
 import "./login.css";
 import logo from "./../../objects/logo_dark.png";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { makeAPICall } from "../../global/global-function";
 
 class Login extends React.Component {
   constructor(props) {
@@ -24,11 +25,22 @@ class Login extends React.Component {
       .then((userCredential) => {
         // Signed in
         sessionStorage.setItem("tmp_user_id", userCredential.user.uid);
-        this.props.Navigate("market");
+        makeAPICall(
+          "getData",
+          "users",
+          { uid: userCredential.user.uid },
+          (response) => {
+            if (response !== null && response.length > 0) {
+              console.log(response);
+              sessionStorage.setItem("tmp_user_username", response[0].username);
+            }
+            this.props.Navigate("market");
+          }
+        );
       })
       .catch((error) => {
         let err = error.message;
-        this.setState({error: true});
+        this.setState({ error: true });
         alert("Error Occured: Check Console");
         console.log(err);
       });

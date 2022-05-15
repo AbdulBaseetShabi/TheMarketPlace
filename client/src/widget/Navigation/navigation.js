@@ -2,8 +2,8 @@ import "./navigation.css";
 import logo from "./../../objects/logo_white.png";
 const ROUTES = [
   {
-    name: "Market",
-    icon: "https://img.icons8.com/plasticine/60/000000/file.png",
+    name: "Market/Buyer",
+    route: "market",
   },
   {
     name: "Seller",
@@ -21,6 +21,7 @@ const HR_STYLE = {
 };
 
 function Navigation(props) {
+  let username = sessionStorage.getItem("tmp_user_username");
   return (
     <div id="navigation">
       <div>
@@ -31,13 +32,15 @@ function Navigation(props) {
         />
       </div>
       <label id="hello" className="inline-block">
-        Hi <span style={{ fontSize: "inherit" }}>&#128075;, </span>UserName
+        Hi <span style={{ fontSize: "inherit" }}>&#128075;, </span>
+        {username ?? "N?A"}
       </label>
       <hr style={HR_STYLE} />
       <div id="navigation-routes-container">
         {ROUTES.map((route, index) => {
+          let temp = route.route ?? route.name.toLowerCase();
           let class_name =
-            route.name.toLowerCase() === props.CurrentRoute
+            temp === props.CurrentRoute
               ? "navigation-route current-route"
               : "navigation-route";
           return (
@@ -59,6 +62,7 @@ function Navigation(props) {
         id="logout"
         onClick={() => {
           sessionStorage.removeItem("tmp_user_id");
+          sessionStorage.removeItem("tmp_user_username");
           props.Navigate("login");
         }}
       >
