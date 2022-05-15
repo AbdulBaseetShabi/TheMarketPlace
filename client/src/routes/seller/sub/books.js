@@ -55,7 +55,7 @@ function BookCard(props) {
               className="button"
               style={{
                 width: "20%",
-                backgroundColor: "#008000",
+                backgroundColor: "#2CB67D",
                 padding: "5px",
                 margin: "0",
                 borderRadius: "0 5px 5px 0",
@@ -254,7 +254,7 @@ class Books extends React.Component {
     );
 
     return (
-      <div className="enter-left">
+      <div className="enter-left-nofowards">
         {this.state.modal ? (
           <SellerAlert
             alertMessage={ALERT_MESSAGE}

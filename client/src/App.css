@@ -12,14 +12,15 @@
 }
 
 /* Animations */
-.enter-left {
+.enter-left, .enter-left-nofowards {
   animation-name: fade-in-left;
+  animation-duration: 1.5s;
 }
 
 .enter-left{
-  animation-duration: 1.5s;
   animation-fill-mode: forwards;
 }
+
 @keyframes fade-in-left {
   from {
     transform: translate(-50px, 0);

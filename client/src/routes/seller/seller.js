@@ -54,7 +54,7 @@ class Seller extends React.Component {
     }
 
     return (
-      <div id="seller" className="enter-left">
+      <div id="seller" className="enter-left-nofowards">
         <div id="seller-menu">
           <label
             className="inline-block header-level-two"

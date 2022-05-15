@@ -9,6 +9,7 @@ class Payment extends React.Component {
       edit_mode: false,
       cardInfo: null,
       address: null,
+      loading: false,
     };
     this.updateForm = this.updateForm.bind(this);
     this.account = null;
@@ -22,25 +23,28 @@ class Payment extends React.Component {
   }
 
   updateUserCredentials() {
-    makeAPICall(
-      "updateData",
-      "users",
-      {
-        _id: this.props.account._id,
-        cardInfo: this.state.cardInfo,
-        address: this.state.address,
-      },
-      (response) => {
-        console.log(response);
-        if (response !== null) {
-          alert(response);
-        } else {
-          alert("Error occured: Check Console");
-        }
+    this.setState({ loading: true });
+    setTimeout(() => {
+      makeAPICall(
+        "updateData",
+        "users",
+        {
+          _id: this.props.account._id,
+          cardInfo: this.state.cardInfo,
+          address: this.state.address,
+        },
+        (response) => {
+          console.log(response);
+          if (response !== null) {
+            alert("Information Updated Successfully");
+          } else {
+            alert("Error occured: Check Console");
+          }
 
-        this.setState({edit_mode: false});
-      }
-    );
+          this.setState({ edit_mode: false, loading: false });
+        }
+      );
+    }, 1500);
   }
 
   updateForm(event) {
@@ -269,28 +273,40 @@ class Payment extends React.Component {
                 fontWeight: "normal",
               }}
               onClick={
-                this.state.edit_mode
+                this.state.loading
+                  ? () => {}
+                  : this.state.edit_mode
                   ? () => {
-                    this.updateUserCredentials();
-                  }
+                      this.updateUserCredentials();
+                    }
                   : () => {
                       this.setState({ edit_mode: true });
                     }
               }
             >
-              {this.state.edit_mode ? "Save" : "Edit"}
+              {this.state.loading ? (
+                <div className="loading-icon-button"></div>
+              ) : this.state.edit_mode ? (
+                "Save"
+              ) : (
+                "Edit"
+              )}
             </div>
             {this.state.edit_mode ? (
               <div
                 className="button"
                 style={{ backgroundColor: "#000000", fontWeight: "normal" }}
-                onClick={() => {
-                  this.setState({
-                    cardInfo: this.props.account.cardInfo,
-                    address: this.props.account.address,
-                    edit_mode: false,
-                  });
-                }}
+                onClick={
+                  this.state.loading
+                    ? () => {}
+                    : () => {
+                        this.setState({
+                          cardInfo: this.props.account.cardInfo,
+                          address: this.props.account.address,
+                          edit_mode: false,
+                        });
+                      }
+                }
               >
                 Cancel
               </div>

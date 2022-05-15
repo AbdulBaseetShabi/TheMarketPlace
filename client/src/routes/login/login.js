@@ -40,7 +40,7 @@ class Login extends React.Component {
                   response[0].username
                 );
               }
-              this.setState({navigating: true});
+              this.setState({ navigating: true });
               this.props.Navigate("market");
             }
           );
@@ -125,9 +125,13 @@ class Login extends React.Component {
               <div
                 className="button"
                 style={{ backgroundColor: "#7f5af0" }}
-                onClick={() => {
-                  this.props.Navigate("signup");
-                }}
+                onClick={
+                  this.state.loading
+                    ? () => {}
+                    : () => {
+                        this.props.Navigate("signup");
+                      }
+                }
               >
                 Sign up
               </div>

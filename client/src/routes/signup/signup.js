@@ -232,9 +232,13 @@ class Signup extends React.Component {
               <div
                 className="button"
                 style={{ backgroundColor: "#7f5af0" }}
-                onClick={() => {
-                  this.props.Navigate("login");
-                }}
+                onClick={
+                  this.state.loading
+                    ? () => {}
+                    : () => {
+                        this.props.Navigate("login");
+                      }
+                }
               >
                 Go to Login Page
               </div>
