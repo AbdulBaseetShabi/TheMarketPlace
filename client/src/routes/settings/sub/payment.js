@@ -6,7 +6,7 @@ class Payment extends React.Component {
       <div id="payment">
         <label
           className="inline-block header-level-one"
-          style={{ textAlign: "center" }}
+          style={{ textAlign: "center", fontWeight: "bold" }}
         >
           Payment Information
         </label>
@@ -17,6 +17,7 @@ class Payment extends React.Component {
             borderBottom: "1px solid white",
           }}
         />
+        <div id="payment-content">
         <div id="card">
           <div>
             <label className="inline-block header-level-two">
@@ -158,6 +159,8 @@ class Payment extends React.Component {
             </div>
           </div>
         </div>
+        </div>
+
       </div>
     );
   }
