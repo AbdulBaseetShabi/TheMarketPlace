@@ -1,3 +1,5 @@
+import '../settings.css';
+
 function Account(props) {
   return (
     <div id="account">
@@ -20,7 +22,7 @@ function Account(props) {
             <label>First Name</label>
             <input
               type="text"
-              value={props.account.firstname}
+              value={props.account?.firstname}
               disabled="disabled"
               style={{ color: "#fffffe" }}
             />
@@ -29,7 +31,7 @@ function Account(props) {
             <label>Last Name</label>
             <input
               type="text"
-              value={props.account.lastname}
+              value={props.account?.lastname}
               disabled="disabled"
               style={{ color: "#fffffe" }}
             />
@@ -40,7 +42,7 @@ function Account(props) {
             <label>Email</label>
             <input
               type="text"
-              value={props.account.email}
+              value={props.account?.email}
               disabled="disabled"
               style={{ color: "#fffffe" }}
             />
@@ -49,7 +51,7 @@ function Account(props) {
             <label>User Name</label>
             <input
               type="text"
-              value={props.account.username}
+              value={props.account?.username}
               disabled="disabled"
               style={{ color: "#fffffe" }}
             />
@@ -59,7 +61,7 @@ function Account(props) {
           <label>School</label>
           <input
             type="text"
-            value={props.account.school}
+            value={props.account?.school}
             disabled="disabled"
             style={{ color: "#fffffe" }}
           />
