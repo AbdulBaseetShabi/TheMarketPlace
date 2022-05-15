@@ -20,6 +20,13 @@ input[name="price"]{
     padding-left: 10px;
 }
 
+#new-book-form{
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    position: relative;
+}
 /* Seller */
 #seller{
     height: 100%;

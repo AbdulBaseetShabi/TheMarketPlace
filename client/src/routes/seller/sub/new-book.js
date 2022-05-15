@@ -1,4 +1,5 @@
 import React from "react";
+import { makeAPICall } from "../../../global/global-function";
 import "../seller.css";
 
 class AddNewBook extends React.Component {
@@ -6,6 +7,7 @@ class AddNewBook extends React.Component {
     super(props);
     this.state = {
       tags: [],
+      error: false,
     };
     this.submitForm = this.submitForm.bind(this);
     this.updateForm = this.updateForm.bind(this);
@@ -67,7 +69,22 @@ class AddNewBook extends React.Component {
 
   submitForm() {
     this.new_book["tags"] = this.state.tags;
-    console.log(this.new_book);
+
+    let valid = true;
+    for (const [key, value] of Object.entries(this.new_book)) {
+      valid = valid && this.new_book[key].length > 0;
+    }
+
+    if (valid) {
+      makeAPICall("addData", "books", this.new_book, (result) => {
+        console.log(result);
+        if (result !== null) {
+          alert("New Book Added");
+        }
+      });
+    } else {
+      this.setState({ error: true });
+    }
   }
 
   render() {
@@ -87,7 +104,7 @@ class AddNewBook extends React.Component {
           }}
         />
         <div id="new-book-form">
-          <div>
+          <div style={{ marginTop: "10px" }}>
             <label>Book Name: </label>
             <input
               type="text"
@@ -96,7 +113,7 @@ class AddNewBook extends React.Component {
               onChange={this.updateForm}
             />
           </div>
-          <div>
+          <div style={{ marginTop: "10px" }}>
             <label>ISBN: </label>
             <input
               type="text"
@@ -105,7 +122,7 @@ class AddNewBook extends React.Component {
               onChange={this.updateForm}
             />
           </div>
-          <div>
+          <div style={{ marginTop: "10px" }}>
             <label>
               Price:{" "}
               <span className="tiny-text" style={{ fontStyle: "italic" }}>
@@ -120,7 +137,7 @@ class AddNewBook extends React.Component {
               onChange={this.updateForm}
             />
           </div>
-          <div>
+          {/* <div>
             <label>Image: </label>
             <input
               type="file"
@@ -128,8 +145,8 @@ class AddNewBook extends React.Component {
               accept="image/*"
               onChange={this.updateForm}
             />
-          </div>
-          <div>
+          </div> */}
+          <div style={{ marginTop: "10px" }}>
             <label>Condition:</label>
             <div>
               <div>
@@ -161,7 +178,7 @@ class AddNewBook extends React.Component {
               </div>
             </div>
           </div>
-          <div>
+          <div style={{ marginTop: "10px" }}>
             <label>Status:</label>
             <div>
               <div>
@@ -184,7 +201,7 @@ class AddNewBook extends React.Component {
               </div>
             </div>
           </div>
-          <div>
+          <div style={{ marginTop: "10px" }}>
             <label>
               Tags:{" "}
               <span className="tiny-text" style={{ fontStyle: "italic" }}>
@@ -196,10 +213,11 @@ class AddNewBook extends React.Component {
               name="tag"
               placeholder="Tag"
               onKeyDown={this.updateForm}
+              style={{ marginTop: "7px" }}
             />
             {this.state.tags.map((tag, index) => {
               return (
-                <div key={index} className="tiny-text tag">
+                <div key={index} className="tiny-text tag" style={{marginTop: "5px" }}>
                   <div style={{ display: "flex" }}>
                     <label>{tag}</label>
                     <img
@@ -214,18 +232,26 @@ class AddNewBook extends React.Component {
                 </div>
               );
             })}
+            {this.state.error ? (
+              <label
+                className="inline-block tiny-text"
+                style={{ color: "#f08080" }}
+              >
+                All fileds are required. Ensure all fields are filled.
+              </label>
+            ) : null}
           </div>
           <div
             className="button"
             style={{
               backgroundColor: "#2cb67d",
               position: "absolute",
-              bottom: "20px",
+              bottom: "-70px",
               left: "25%",
             }}
             onClick={this.submitForm}
           >
-            Create Book
+            Add Book To Market
           </div>
         </div>
       </div>
