@@ -41,7 +41,34 @@ class Market extends React.Component {
   }
 
   finalizePurchase() {
-    alert(this.state.book_id);
+    makeAPICall(
+      "updateData",
+      "books",
+      {
+        _id: this.state.book_id,
+        status: "sold",
+        buyerID: sessionStorage.getItem("tmp_user_id"),
+      },
+      (response) => {
+        console.log(response);
+        if (response !== null) {
+          this.setState((prevState, prevProps) => {
+            return {
+              results: prevState.results.filter((book) => {
+                return book._id !== this.state.book_id;
+              }),
+              display: prevState.display.filter((book) => {
+                return book._id !== this.state.book_id;
+              }),
+              purchase_screen: false,
+            };
+          });
+          alert(response);
+        } else {
+          alert("Error Check Console");
+        }
+      }
+    );
   }
 
   search(event) {
