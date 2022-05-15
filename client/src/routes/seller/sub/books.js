@@ -127,14 +127,19 @@ class Books extends React.Component {
   }
 
   componentDidMount() {
-    makeAPICall("getData", "books", {}, (response) => {
-      console.log(response);
-      if (response !== null) {
-        this.setState({
-          results: response,
-        });
+    makeAPICall(
+      "getData",
+      "books",
+      { sellerID: sessionStorage.getItem("tmp_user_id") },
+      (response) => {
+        console.log(response);
+        if (response !== null) {
+          this.setState({
+            results: response,
+          });
+        }
       }
-    });
+    );
   }
 
   render() {
