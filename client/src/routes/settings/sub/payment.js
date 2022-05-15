@@ -60,7 +60,7 @@ class Payment extends React.Component {
 
   render() {
     return (
-      <div id="payment">
+      <div id="payment" className="enter-left">
         <label
           className="inline-block header-level-one"
           style={{ textAlign: "center", fontWeight: "bold" }}

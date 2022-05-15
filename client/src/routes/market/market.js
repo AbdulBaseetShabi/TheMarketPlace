@@ -113,7 +113,7 @@ class Market extends React.Component {
         ? 0
         : Math.ceil(this.state.display.length / 10);
     return (
-      <div id="market">
+      <div id="market" className="enter-left">
         {this.state.purchase_screen ? (
           <Modal
             child={

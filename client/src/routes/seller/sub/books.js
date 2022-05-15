@@ -254,7 +254,7 @@ class Books extends React.Component {
     );
 
     return (
-      <div>
+      <div className="enter-left">
         {this.state.modal ? (
           <SellerAlert
             alertMessage={ALERT_MESSAGE}

@@ -40,6 +40,7 @@ class Login extends React.Component {
                   response[0].username
                 );
               }
+              this.setState({navigating: true});
               this.props.Navigate("market");
             }
           );

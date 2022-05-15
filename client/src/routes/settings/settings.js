@@ -63,7 +63,7 @@ class Settings extends React.Component {
     }
 
     return (
-      <div id="settings">
+      <div id="settings" className="enter-left">
         <div id="settings-menu">
           <label
             className="inline-block header-level-two"

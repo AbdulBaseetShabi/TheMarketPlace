@@ -2,7 +2,7 @@ import "../settings.css";
 
 function Account(props) {
   return (
-    <div id="account">
+    <div id="account" className="enter-left">
       <label
         className="inline-block header-level-one"
         style={{ textAlign: "center", fontWeight: "bold" }}

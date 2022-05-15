@@ -118,7 +118,7 @@ class AddNewBook extends React.Component {
 
   render() {
     return (
-      <div id="new-book">
+      <div id="new-book" className="enter-left">
         {this.state.modal ? (
           <SellerAlert
             close={() => {
