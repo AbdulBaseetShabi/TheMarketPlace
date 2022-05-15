@@ -20,11 +20,7 @@ const ROUTES = [
   {
     name: "Sold Books",
     route: "sold",
-  },
-  {
-    name: "Reviews",
-    route: "reviews",
-  },
+  }
 ];
 
 const HR_STYLE = {
