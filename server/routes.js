@@ -54,8 +54,34 @@ async function addDataToDB(req, res) {
   }
 }
 
+async function getDataFromDBHelper(db, condition, callback) {
+  let param = condition !== undefined ? condition : {};
+  await client
+    .db(process.env.db)
+    .collection(db)
+    .find(param)
+    .toArray((err, result) => {
+      callback(err, result);
+    });
+}
+
+async function getDataFromDB(req, res) {
+  try {
+    let db = req.query.db;
+    let condition = req.body;
+    await getDataFromDBHelper(db, condition, (err, result) => {
+      if (err) throw err;
+      res.status(200).send(result);
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message);
+  }
+}
+
 module.exports = {
   testServer,
   endPointNotFound,
-  addDataToDB
+  addDataToDB,
+  getDataFromDB,
 };
