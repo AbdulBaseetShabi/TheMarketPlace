@@ -27,3 +27,4 @@ app.post('/addData', routes.addDataToDB);
 app.post('/getData', routes.getDataFromDB);
 app.post('/removeData', routes.removeDataFromDB);
 app.post('/updateData', routes.updateDataInDB);
+app.post('/sendMessage', routes.sendTextMessage);

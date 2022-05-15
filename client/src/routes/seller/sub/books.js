@@ -133,6 +133,7 @@ class Books extends React.Component {
     this.changeBookStatus = this.changeBookStatus.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
     this.createTrackingNo = this.createTrackingNo.bind(this);
+    this.sendTextMessage = this.sendTextMessage.bind(this);
     this.details = null;
   }
 
@@ -145,17 +146,48 @@ class Books extends React.Component {
         console.log(response);
         if (response !== null) {
           this.setState((prevState, prevProps) => {
+            this.sendTextMessage(
+              prevState.results[index].buyerID,
+              value,
+              prevState.results[index].bookName
+            );
+
             prevState.results[index].trackingNo = value;
             return {
               results: prevState.results,
             };
           });
-          alert(response);
         } else {
           alert("Error: check console");
         }
       }
     );
+  }
+
+  sendTextMessage(id, trackingNo, bookName) {
+    makeAPICall("getData", "users", { uid: id }, (response) => {
+      console.log(response);
+      if (response !== null && response.length > 0) {
+        makeAPICall(
+          "sendMessage",
+          "none",
+          {
+            message: `Use this number (${trackingNo}) to track your order: ${bookName}`,
+            to: response[0].phone,
+          },
+          (response) => {
+            console.log(response);
+            if (response !== null) {
+              alert("Sent SMS");
+            } else {
+              alert("Error: check console");
+            }
+          }
+        );
+      } else {
+        alert("Error: check console");
+      }
+    });
   }
 
   changeBookStatus() {

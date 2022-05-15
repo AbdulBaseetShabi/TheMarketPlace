@@ -7,6 +7,11 @@ var client = new MongoClient(mongoDBConnectionString, {
   useUnifiedTopology: true,
 });
 
+const clientTwilio = require("twilio")(
+ process.env.sID,
+ process.env.authToken
+);
+
 //GENERAL
 (async () => {
   try {
@@ -126,6 +131,27 @@ async function removeDataFromDB(req, res) {
   }
 }
 
+async function sendTextMessage(req, res) {
+  try {
+    let body = req.body;
+    await clientTwilio.messages
+      .create({
+        body: body.message,
+        to: body.to,
+        from: process.env.number,
+      })
+      .then((result) => {
+        res.status(200).send(result);
+      })
+      .catch((err) => {
+        if (err) throw err;
+      });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message);
+  }
+}
+
 module.exports = {
   testServer,
   endPointNotFound,
@@ -133,4 +159,5 @@ module.exports = {
   getDataFromDB,
   updateDataInDB,
   removeDataFromDB,
+  sendTextMessage,
 };
