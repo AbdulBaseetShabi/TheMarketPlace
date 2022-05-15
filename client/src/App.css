@@ -56,6 +56,12 @@ input[type="text"], input[type="password"], input[type="email"]{
   padding-left: 10px;
 }
 
+input{
+  font-family: 'Poppins', sans-serif;
+  color: #232946;
+  font-weight: 600;
+}
+
 .tag{
   background-color: #7F5AF0;
   display: inline-block;

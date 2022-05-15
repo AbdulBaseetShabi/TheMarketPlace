@@ -1,19 +1,9 @@
-import GlobalVariables from "../../../global/global-variables";
-
 import "../market.css";
 
 function Book(props) {
   let book = props.info;
   return (
     <div className="book">
-      <div
-        className="book-image"
-        style={{
-          backgroundImage: `url(${
-            GlobalVariables.GOOGLE_DRIVE_PREFIX + book.imageUrl
-          })`,
-        }}
-      ></div>
       <label
         className="inline-block"
         style={{ textAlign: "center", marginTop: "5px" }}
@@ -57,9 +47,12 @@ function Book(props) {
           className="button"
           style={{
             backgroundColor: "#2CB67D",
-            width: "80%",
+            width: "100%",
+            borderRadius: "0",
             fontWeight: "normal",
             padding: "5px 50px",
+            bottom: "-10px",
+            position: "absolute"
           }}
           onClick={() => props.purchase(book._id)}
         >

@@ -2,9 +2,10 @@ import React from "react";
 import Book from "../market/sub/book";
 
 import "./market.css";
-import GlobalVariables from "../../global/global-variables";
 import Modal from "../../widget/modal/modal";
 import Purchase from "./sub/purchase";
+
+import { makeAPICall } from "../../global/global-function";
 
 class Market extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Market extends React.Component {
     this.state = {
       current_page: 0,
       results: null,
+      display: null,
       purchase_screen: false,
       book_id: null,
     };
@@ -19,6 +21,7 @@ class Market extends React.Component {
     this.closePurchaseScreen = this.closePurchaseScreen.bind(this);
     this.purchaseBook = this.purchaseBook.bind(this);
     this.finalizePurchase = this.finalizePurchase.bind(this);
+    this.search = this.search.bind(this);
   }
 
   changePage(pace) {
@@ -41,24 +44,47 @@ class Market extends React.Component {
     alert(this.state.book_id);
   }
 
+  search(event) {
+    let value = event.target.value.toLowerCase().trim();
+    this.setState((prevState, prevProps) => {
+      let books = prevState.results.filter((book) => {
+        console.log(book);
+        let flag =
+          book.isbn.toLowerCase().includes(value) ||
+          book.bookName.toLowerCase().includes(value);
+        flag =
+          flag ||
+          book.tags.find((tag) => tag.toLowerCase().includes(value)) !==
+            undefined;
+        return flag;
+      });
+      return {
+        display: books,
+      };
+    });
+  }
+
   componentDidMount() {
-    this.setState({
-      results: GlobalVariables.BOOKS.filter((book) => {
-        return book.status === "publish";
-      }),
+    makeAPICall("getData", "books", { status: "publish" }, (response) => {
+      if (response !== null) {
+        this.setState({
+          results: response,
+          display: response,
+        });
+      }
     });
   }
 
   render() {
     let start = this.state.current_page * 10;
     let books =
-      this.state.results === null
+      this.state.display === null
         ? []
-        : this.state.results.slice(start, start + 10);
+        : this.state.display.slice(start, start + 10);
     let max_pages =
-      this.state.results === null
+      this.state.display === null
         ? 0
-        : Math.ceil(this.state.results.length / 10);
+        : Math.ceil(this.state.display.length / 10);
     return (
       <div id="market">
         {this.state.purchase_screen ? (
@@ -71,21 +97,29 @@ class Market extends React.Component {
             }
           />
         ) : null}
-        <div id="search">
-          <input
-            type="text"
-            placeholder="Enter an ISBN, Text Book Name or Course Code"
-            autoComplete="off"
-          />
-          <label>Search</label>
+        <div id="header">
+          <label
+            className="inline-block header-level-one"
+            style={{ textAlign: "center", fontWeight: "bold" }}
+          >
+            The Market Place
+          </label>
+          <label
+            className="inline-block header-level-two"
+            style={{ textAlign: "center" }}
+          >
+            A place just for students
+          </label>
+          <div id="search">
+            <input
+              id="search_input"
+              type="text"
+              placeholder="Enter an ISBN, Text Book Name or Course Code"
+              autoComplete="off"
+              onChange={this.search}
+            />
+          </div>
         </div>
-        <hr
-          style={{
-            opacity: "0.2",
-            width: "80%",
-            borderBottom: "1px solid white",
-          }}
-        />
         <div id="search-result">
           {books.map((book, index) => {
             return (
