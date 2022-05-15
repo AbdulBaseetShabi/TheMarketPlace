@@ -26,6 +26,19 @@ class Signup extends React.Component {
       username: "",
       email: "",
       school: "",
+      cardInfo: {
+        name: "",
+        cardNo: "",
+        csv: "",
+        month: "",
+        year: "",
+      },
+      address: {
+        address: "",
+        city: "",
+        province: "",
+        postalCode: "",
+      },
       password: "",
       password_2: "",
     };
