@@ -10,6 +10,7 @@ class Login extends React.Component {
     super(props);
     this.state = {
       error: false,
+      loading: false,
     };
     this.logIn = this.logIn.bind(this);
     this.updateForm = this.updateForm.bind(this);
@@ -17,33 +18,38 @@ class Login extends React.Component {
   }
 
   logIn() {
-    signInWithEmailAndPassword(
-      this.props.auth,
-      this.credentials.email,
-      this.credentials.password
-    )
-      .then((userCredential) => {
-        // Signed in
-        sessionStorage.setItem("tmp_user_id", userCredential.user.uid);
-        makeAPICall(
-          "getData",
-          "users",
-          { uid: userCredential.user.uid },
-          (response) => {
-            if (response !== null && response.length > 0) {
-              console.log(response);
-              sessionStorage.setItem("tmp_user_username", response[0].username);
+    this.setState({ loading: true });
+    setTimeout(() => {
+      signInWithEmailAndPassword(
+        this.props.auth,
+        this.credentials.email,
+        this.credentials.password
+      )
+        .then((userCredential) => {
+          // Signed in
+          sessionStorage.setItem("tmp_user_id", userCredential.user.uid);
+          makeAPICall(
+            "getData",
+            "users",
+            { uid: userCredential.user.uid },
+            (response) => {
+              if (response !== null && response.length > 0) {
+                console.log(response);
+                sessionStorage.setItem(
+                  "tmp_user_username",
+                  response[0].username
+                );
+              }
+              this.props.Navigate("market");
             }
-            this.props.Navigate("market");
-          }
-        );
-      })
-      .catch((error) => {
-        let err = error.message;
-        this.setState({ error: true });
-        alert("Error Occured: Check Console");
-        console.log(err);
-      });
+          );
+        })
+        .catch((error) => {
+          let err = error.message;
+          this.setState({ error: true, loading: false });
+          console.log(err);
+        });
+    }, 1500);
   }
 
   updateForm(event) {
@@ -63,7 +69,7 @@ class Login extends React.Component {
     return (
       <div id="login">
         <img src={logo} alt="logo" />
-        <div id="login-content">
+        <div id="login-content" className="enter-left">
           <div style={{ width: "75%" }}>
             <label className="inline-block header-level-one">
               Log into your account
@@ -109,7 +115,11 @@ class Login extends React.Component {
                 style={{ backgroundColor: "#2cb67d" }}
                 onClick={this.logIn}
               >
-                Login
+                {this.state.loading ? (
+                  <div className="loading-icon-button"></div>
+                ) : (
+                  "Login"
+                )}
               </div>
               <div
                 className="button"

@@ -11,6 +11,7 @@ class Signup extends React.Component {
     this.state = {
       email_error: false,
       password_error: false,
+      loding: false,
     };
 
     this.signUp = this.signUp.bind(this);
@@ -61,32 +62,35 @@ class Signup extends React.Component {
     let email_valid = /(@mylaurier.ca)$/.test(this.user.email);
 
     if (password_valid && email_valid) {
-      createUserWithEmailAndPassword(
-        this.props.auth,
-        this.user.email,
-        this.user.password
-      )
-        .then((userCredential) => {
-          // Signed in
-          this.user.uid = userCredential.user.uid;
-          delete this.user.password;
-          delete this.user.password_2;
+      this.setState({ loading: true });
+      setTimeout(() => {
+        createUserWithEmailAndPassword(
+          this.props.auth,
+          this.user.email,
+          this.user.password
+        )
+          .then((userCredential) => {
+            // Signed in
+            this.user.uid = userCredential.user.uid;
+            delete this.user.password;
+            delete this.user.password_2;
 
-          makeAPICall("addData", "users", this.user, (response) => {
-            if (response !== null) {
-              alert("User has successfully been created");
-              this.props.Navigate("login");
-            } else {
-              alert("Error Occured: Check Console");
-              console.log(response);
-            }
+            makeAPICall("addData", "users", this.user, (response) => {
+              if (response !== null) {
+                alert("User has successfully been created");
+                this.props.Navigate("login");
+              } else {
+                alert("Error Occured: Check Console");
+                console.log(response);
+              }
+            });
+          })
+          .catch((error) => {
+            let err = error.message;
+            console.log(err);
+            this.setState({ loading: false });
           });
-        })
-        .catch((error) => {
-          let err = error.message;
-          alert("Error Occured: Check Console");
-          console.log(err);
-        });
+      }, 1500);
     } else {
       this.setState({
         email_error: !email_valid,
@@ -99,7 +103,7 @@ class Signup extends React.Component {
     return (
       <div id="signup">
         <img src={logo} alt="logo" />
-        <div id="signup-content">
+        <div id="signup-content" className="enter-left">
           <div style={{ width: "75%" }}>
             <label className="inline-block header-level-one">
               Create your account
@@ -219,7 +223,11 @@ class Signup extends React.Component {
                 style={{ backgroundColor: "#2cb67d" }}
                 onClick={this.signUp}
               >
-                Sign up
+                {this.state.loading ? (
+                  <div className="loading-icon-button"></div>
+                ) : (
+                  "Sign Up"
+                )}
               </div>
               <div
                 className="button"

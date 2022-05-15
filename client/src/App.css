@@ -11,6 +11,26 @@
   box-sizing: border-box;
 }
 
+/* Animations */
+.enter-left {
+  animation-name: fade-in-left;
+}
+
+.enter-left{
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+}
+@keyframes fade-in-left {
+  from {
+    transform: translate(-50px, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
 /* Helper */
 .inline-block {
   width: 100%;
@@ -75,4 +95,30 @@ input{
   color: #222844;
   width: 50%;
   margin: 0 auto;
+}
+
+.loading-icon-button{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.loading-icon-button:after {
+  content: " ";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #7f5af0 transparent #ffb901 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
