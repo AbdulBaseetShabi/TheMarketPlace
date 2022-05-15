@@ -1,6 +1,17 @@
 import React from "react";
 import { makeAPICall } from "../../../global/global-function";
 import "../seller.css";
+import SellerAlert from "./seller-alert";
+
+const ALERT_MESSAGE = (
+  <label className="inline-block" style={{ textAlign: "center" }}>
+    Are you sure would be want to add this book? If so, if you do not publish
+    it, you can publish it later under{" "}
+    <span style={{ fontWeight: "bold", fontStyle: "italic" }}>
+      Seller {">"} Unpublished Books
+    </span>
+  </label>
+);
 
 class AddNewBook extends React.Component {
   constructor(props) {
@@ -8,10 +19,12 @@ class AddNewBook extends React.Component {
     this.state = {
       tags: [],
       error: false,
+      modal: false,
     };
     this.submitForm = this.submitForm.bind(this);
     this.updateForm = this.updateForm.bind(this);
     this.deleteTag = this.deleteTag.bind(this);
+    this.validateForm = this.validateForm.bind(this);
     this.new_book = null;
   }
 
@@ -24,7 +37,7 @@ class AddNewBook extends React.Component {
       price: "",
       imageUrl: "",
       status: "",
-      sellerID: "",
+      sellerID: sessionStorage.getItem("tmp_user_id") ?? "",
       bookAuthor: "",
       buyerID: "",
       dateCreated: new Date().toISOString(),
@@ -67,32 +80,58 @@ class AddNewBook extends React.Component {
     });
   }
 
-  submitForm() {
+  validateForm() {
     this.new_book["tags"] = this.state.tags;
 
     let valid = true;
-    for (const [key, value] of Object.entries(this.new_book)) {
-      valid = valid && this.new_book[key].length > 0;
+    for (const [key] of Object.entries(this.new_book)) {
+      if (
+        key === "tags" ||
+        key === "bookName" ||
+        key === "price" ||
+        key === "condition" ||
+        key === "status" ||
+        key === "sellerID"
+      ) {
+        valid = valid && this.new_book[key].length > 0;
+      }
     }
 
     if (valid) {
-      makeAPICall("addData", "books", this.new_book, (result) => {
-        console.log(result);
-        if (result !== null) {
-          alert("New Book Added");
-        }
-      });
+      this.setState({ modal: true });
     } else {
       this.setState({ error: true });
     }
   }
 
+  submitForm() {
+    console.log(this.new_book);
+    makeAPICall("addData", "books", this.new_book, (result) => {
+      console.log(result);
+      if (result !== null) {
+        alert("New Book Added");
+      }
+      this.setState({ error: false, modal: false });
+    });
+  }
+
   render() {
     return (
       <div id="new-book">
+        {this.state.modal ? (
+          <SellerAlert
+            close={() => {
+              this.setState({ modal: false });
+            }}
+            alertMessage={ALERT_MESSAGE}
+            continue={this.submitForm}
+            continue_message={"Add Book"}
+          />
+        ) : null}
+
         <label
           className="inline-block header-level-one"
-          style={{ textAlign: "center" }}
+          style={{ textAlign: "center", fontWeight: "bold" }}
         >
           Put a Book on the Market
         </label>
@@ -217,7 +256,11 @@ class AddNewBook extends React.Component {
             />
             {this.state.tags.map((tag, index) => {
               return (
-                <div key={index} className="tiny-text tag" style={{marginTop: "5px" }}>
+                <div
+                  key={index}
+                  className="tiny-text tag"
+                  style={{ marginTop: "5px" }}
+                >
                   <div style={{ display: "flex" }}>
                     <label>{tag}</label>
                     <img
@@ -249,7 +292,7 @@ class AddNewBook extends React.Component {
               bottom: "-70px",
               left: "25%",
             }}
-            onClick={this.submitForm}
+            onClick={this.validateForm}
           >
             Add Book To Market
           </div>
