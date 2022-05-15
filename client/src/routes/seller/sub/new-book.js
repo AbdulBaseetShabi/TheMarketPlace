@@ -40,6 +40,7 @@ class AddNewBook extends React.Component {
       sellerID: sessionStorage.getItem("tmp_user_id") ?? "",
       bookAuthor: "",
       buyerID: "",
+      trackingNo: "",
       dateCreated: new Date().toISOString(),
     };
   }

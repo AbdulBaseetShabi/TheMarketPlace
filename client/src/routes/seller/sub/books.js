@@ -25,9 +25,55 @@ function BookCard(props) {
         borderLeft: "5px solid " + color,
       }}
     >
-      <label className="inline-block">Name: {book.bookName}</label>
-      <label className="inline-block">Tags: {book.tags.join(", ")}</label>
-      <label className="inline-block">Price: ${book.price}</label>
+      <label className="inline-block">
+        <span style={{ fontWeight: "bold" }}>Name: </span>
+        {book.bookName}
+      </label>
+      <label className="inline-block">
+        <span style={{ fontWeight: "bold" }}>Tags: </span>
+        {book.tags.join(", ")}
+      </label>
+      <label className="inline-block">
+        <span style={{ fontWeight: "bold" }}>Price: </span>${book.price}
+      </label>
+      {book.status === "sold" ? (
+        <div style={{ display: "flex" }}>
+          <label style={{ fontWeight: "bold" }}>Tracking No: </label>
+          {book.trackingNo !== "" ? (
+            <label style={{ marginLeft: "5px" }}>{book.trackingNo}</label>
+          ) : (
+            <input
+              type="text"
+              id={"tno_" + props.index}
+              placeholder="Tracking No"
+              style={{ width: "30%", marginLeft: "20px" }}
+            ></input>
+          )}
+
+          {book.trackingNo === "" ? (
+            <div
+              className="button"
+              style={{
+                width: "20%",
+                backgroundColor: "#008000",
+                padding: "5px",
+                margin: "0",
+                borderRadius: "0 5px 5px 0",
+                fontWeight: "normal",
+              }}
+              onClick={() => {
+                let value = document
+                  .getElementById("tno_" + props.index)
+                  .value.trim();
+                props.createTrackingNo(props.index, book._id, value);
+              }}
+            >
+              Save
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
       <div>
         <hr
           style={{
@@ -85,7 +131,31 @@ class Books extends React.Component {
       modal: false,
     };
     this.changeBookStatus = this.changeBookStatus.bind(this);
+    this.deleteBook = this.deleteBook.bind(this);
+    this.createTrackingNo = this.createTrackingNo.bind(this);
     this.details = null;
+  }
+
+  createTrackingNo(index, id, value) {
+    makeAPICall(
+      "updateData",
+      "books",
+      { _id: id, trackingNo: value },
+      (response) => {
+        console.log(response);
+        if (response !== null) {
+          this.setState((prevState, prevProps) => {
+            prevState.results[index].trackingNo = value;
+            return {
+              results: prevState.results,
+            };
+          });
+          alert(response);
+        } else {
+          alert("Error: check console");
+        }
+      }
+    );
   }
 
   changeBookStatus() {
@@ -104,6 +174,8 @@ class Books extends React.Component {
             };
           });
           alert(response);
+        } else {
+          alert("Error: check console");
         }
       }
     );
@@ -169,6 +241,7 @@ class Books extends React.Component {
           return (
             <BookCard
               key={index}
+              index={index}
               info={book}
               changeBookStatus={
                 book.status === "sold"
@@ -184,6 +257,14 @@ class Books extends React.Component {
                       this.setState({ modal: true });
                     }
               }
+              delete={() => {
+                this.details = {
+                  index: index,
+                  id: book._id,
+                };
+                this.deleteBook();
+              }}
+              createTrackingNo={this.createTrackingNo}
             />
           );
         })}
