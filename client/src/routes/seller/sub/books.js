@@ -71,12 +71,11 @@ class Books extends React.Component {
 
   render() {
     let books_array = this.state.results === null ? [] : this.state.results;
-    if (this.props.filter !== "all") {
-      books_array = books_array.filter(
-        (book) => book.status === this.props.filter
-      );
-    }
-    // books_array = books_array.slice(0, 5);
+
+    books_array = books_array.filter(
+      (book) => book.status === this.props.filter
+    );
+
     return (
       <div>
         {books_array.map((book) => {

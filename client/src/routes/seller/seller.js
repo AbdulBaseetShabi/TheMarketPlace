@@ -6,34 +6,24 @@ import "./seller.css";
 
 const ROUTES = [
   {
-    name: "Reviews",
-    route: "reviews",
-    is_sub: false,
-  },
-  {
     name: "Add New Book To Sell",
     route: "anbts",
-    is_sub: false,
   },
   {
-    name: "Books",
-    route: "books",
-    is_sub: false,
-  },
-  {
-    name: "Published",
+    name: "Published Books",
     route: "publish",
-    is_sub: true,
   },
   {
-    name: "Unpublished",
+    name: "Unpublished Books",
     route: "unpublish",
-    is_sub: true,
   },
   {
-    name: "Sold",
+    name: "Sold Books",
     route: "sold",
-    is_sub: true,
+  },
+  {
+    name: "Reviews",
+    route: "reviews",
   },
 ];
 
@@ -47,7 +37,7 @@ class Seller extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current_route: "reviews",
+      current_route: "anbts",
     };
 
     this.Navigate = this.Navigate.bind(this);
@@ -58,31 +48,13 @@ class Seller extends React.Component {
   }
 
   render() {
-    let main_routes = [];
-    let sub_routes = [];
-    for (const route of ROUTES) {
-      if (route.is_sub) {
-        sub_routes.push(route);
-      } else {
-        main_routes.push(route);
-      }
-    }
-
     let route = null;
     if (this.state.current_route === "reviews") {
       route = <div>Here</div>;
     } else if (this.state.current_route === "anbts") {
       route = <AddNewBook />;
     } else {
-      route = (
-        <Books
-          filter={
-            this.state.current_route === "books"
-              ? "all"
-              : this.state.current_route
-          }
-        />
-      );
+      route = <Books filter={this.state.current_route} />;
     }
 
     return (
@@ -96,7 +68,7 @@ class Seller extends React.Component {
           </label>
           <hr style={HR_STYLE} />
           <div>
-            {main_routes.map((route, index) => {
+            {ROUTES.map((route, index) => {
               let class_name =
                 route.route === this.state.current_route
                   ? "inline-block seller-route current-seller-route"
@@ -111,23 +83,6 @@ class Seller extends React.Component {
                 </label>
               );
             })}
-            <div id="seller-submenu">
-              {sub_routes.map((route, index) => {
-                let class_name =
-                  route.route === this.state.current_route
-                    ? "inline-block seller-route current-seller-route"
-                    : "inline-block seller-route";
-                return (
-                  <label
-                    key={index}
-                    className={class_name}
-                    onClick={() => this.Navigate(route.route)}
-                  >
-                    {route.name}
-                  </label>
-                );
-              })}
-            </div>
           </div>
         </div>
         <div id="seller-content">{route}</div>

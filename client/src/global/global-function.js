@@ -4,7 +4,7 @@ async function makeAPICall(endpoint, db, data, callback) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
       if (xmlHttp.readyState === 4) {
-        if (xmlHttp.status === 201) {
+        if (xmlHttp.status === 200 || xmlHttp.status === 201 ) {
           callback(JSON.parse(xmlHttp.responseText));
         } else {
           callback(null);
