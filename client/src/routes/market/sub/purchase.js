@@ -2,7 +2,7 @@ import "../market.css";
 
 function Purchase(props) {
   return (
-    <div id="purchase">
+    <div className="alert">
       <label
         className="inline-block header-level-two"
         style={{ textAlign: "center" }}

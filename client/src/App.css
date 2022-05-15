@@ -63,3 +63,10 @@ input[type="text"], input[type="password"], input[type="email"]{
   padding: 3px;
   border-radius: 3px;
 }
+
+.alert {
+  background-color: #fffffe;
+  color: #222844;
+  width: 50%;
+  margin: 0 auto;
+}
