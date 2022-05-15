@@ -79,9 +79,67 @@ async function getDataFromDB(req, res) {
   }
 }
 
+async function updateDataInDBHelper(db, value, callback) {
+  let id = value._id;
+  delete value._id;
+  await client
+    .db(process.env.db)
+    .collection(db)
+    .updateOne(
+      { _id: new ObjectID(id) },
+      { $set: value },
+      { upsert: true },
+      (err, result) => {
+        callback(err, result);
+      }
+    );
+}
+
+async function updateDataInDB(req, res) {
+  try {
+    let value = req.body;
+    let db = req.query.db;
+    await updateDataInDBHelper(db, value, (err, result) => {
+      if (err) throw err;
+      res.status(200).send(result);
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message);
+  }
+}
+
+async function removeDataFromDB(req, res) {
+  try {
+    let id = req.body._id;
+    let db = req.query.db;
+    assert(id !== undefined, "Invalid data sent");
+    assert(
+      db !== undefined,
+      "Database name should be included in query string"
+    );
+    if (client.isConnected()) {
+      await client
+        .db(process.env.db)
+        .collection(db)
+        .deleteOne({ _id: new ObjectID(id) }, (err, result) => {
+          if (err) throw err;
+          res.status(200).send(result);
+        });
+    } else {
+      throw new Error("Database Connection failed");
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message);
+  }
+}
+
 module.exports = {
   testServer,
   endPointNotFound,
   addDataToDB,
   getDataFromDB,
+  updateDataInDB, 
+  removeDataFromDB
 };

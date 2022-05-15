@@ -25,4 +25,5 @@ app.get('*',  routes.endPointNotFound);
 //POST
 app.post('/addData', routes.addDataToDB);
 app.post('/getData', routes.getDataFromDB);
-
+app.post('/removeData', routes.removeDataFromDB);
+app.post('/updateData', routes.updateDataInDB);
