@@ -26,6 +26,7 @@ class Signup extends React.Component {
       username: "",
       email: "",
       school: "",
+      phone: "",
       cardInfo: {
         name: "",
         cardNo: "",
@@ -160,15 +161,27 @@ class Signup extends React.Component {
                   ) : null}
                 </div>
               </div>
-              <div className="form-input">
-                <label className="inline-block">School:</label>
-                <input
-                  type="text"
-                  name="school"
-                  placeholder="Wilfrid Laurier University"
-                  autoComplete="off"
-                  onChange={this.updateForm}
-                ></input>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div className="form-input" style={{ width: "49%" }}>
+                  <label className="inline-block">School:</label>
+                  <input
+                    type="text"
+                    name="school"
+                    placeholder="Wilfrid Laurier University"
+                    autoComplete="off"
+                    onChange={this.updateForm}
+                  ></input>
+                </div>
+                <div className="form-input" style={{ width: "49%" }}>
+                  <label className="inline-block">Phone:</label>
+                  <input
+                    type="text"
+                    name="phone"
+                    placeholder="+1 xxx xxx xxxx"
+                    autoComplete="off"
+                    onChange={this.updateForm}
+                  ></input>
+                </div>
               </div>
               <div className="form-input">
                 <label className="inline-block">Password:</label>

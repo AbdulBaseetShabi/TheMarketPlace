@@ -1,4 +1,4 @@
-import '../settings.css';
+import "../settings.css";
 
 function Account(props) {
   return (
@@ -37,7 +37,7 @@ function Account(props) {
             />
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: '10px' }}>
           <div style={{ width: "48%" }}>
             <label>Email</label>
             <input
@@ -57,14 +57,25 @@ function Account(props) {
             />
           </div>
         </div>
-        <div style={{ width: "50%" }}>
-          <label>School</label>
-          <input
-            type="text"
-            value={props.account?.school}
-            disabled="disabled"
-            style={{ color: "#fffffe" }}
-          />
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: '10px' }}>
+          <div style={{ width: "48%" }}>
+            <label>School</label>
+            <input
+              type="text"
+              value={props.account?.school}
+              disabled="disabled"
+              style={{ color: "#fffffe" }}
+            />
+          </div>
+          <div style={{ width: "48%" }}>
+            <label>Phone</label>
+            <input
+              type="text"
+              value={props.account?.phone}
+              disabled="disabled"
+              style={{ color: "#fffffe" }}
+            />
+          </div>
         </div>
       </div>
     </div>
