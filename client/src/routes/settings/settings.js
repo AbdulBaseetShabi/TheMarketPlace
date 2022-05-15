@@ -1,8 +1,11 @@
 import React from "react";
 
-import './settings.css';
+import "./settings.css";
 import Account from "./sub/account";
 import Payment from "./sub/payment";
+import { makeAPICall } from "../../global/global-function";
+
+
 const ROUTES = [
   {
     name: "Account Details",
@@ -11,7 +14,7 @@ const ROUTES = [
   {
     name: "Payment Information",
     route: "payment",
-  }
+  },
 ];
 
 const HR_STYLE = {
@@ -25,6 +28,7 @@ class Settings extends React.Component {
     super(props);
     this.state = {
       current_route: "account",
+      account: null,
     };
 
     this.Navigate = this.Navigate.bind(this);
@@ -33,12 +37,29 @@ class Settings extends React.Component {
   Navigate(route) {
     this.setState({ current_route: route });
   }
+
+  componentDidMount() {
+    makeAPICall(
+      "getData",
+      "users",
+      { uid: sessionStorage.getItem("tmp_user_id") },
+      (response) => {
+        console.log(response);
+        if (response !== null) {
+          this.setState({ account: response[0] });
+        }else{
+          alert("Error occured: Check console")
+        }
+      }
+    );
+  }
+
   render() {
     let route = null;
     if (this.state.current_route === "account") {
-      route = <Account/>;
+      route = <Account account={this.state.account} />;
     } else if (this.state.current_route === "payment") {
-      route = <Payment/>;
+      route = <Payment account={this.state.account} />;
     }
 
     return (
