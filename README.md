@@ -5,11 +5,9 @@
  - [Technologies](#technologies)
  - [Client Pages](#client-pages)
  - [Server Routes](#server-routes) 
- - Usage
-   - Client 
-   - Server 
+ - [Usage](#usage)
 
- ### About the Application 
+### About the Application 
 ---
 The Market Place is a web application that allows students to buy and sell used textbooks amongst themselves, with the growth potential to sell other used items, such as, furnitures and appliances.
 
@@ -43,16 +41,47 @@ Students generally take about 10 - 15 courses per year and require textbooks and
 - ### *Payment Information*
   ![payment](https://user-images.githubusercontent.com/44884500/169719055-8467d82f-f866-4f08-857a-28edfca93526.jpg)
 
-### Servers Routes
+### Server Routes
 --- 
 - ### *GET* /
+	- Returns a string (Server is running...)  
+
 - ### *POST* /addData
+	- ***Query***
+		- *db*: The database to which the new data should be added to
+	- ***Body*** 
+		- *any*: The information to be added to the database
+
 - ### *POST* /removeData
+	- ***Query***
+		- *db*: The database to which the data should be deleted from
+	- ***Body*** 
+		- *_id*: The unique identifier to identify the data to be deleted 
+
 - ### *POST* /updateData
+	- ***Query***
+		- *db*: The database to which the data should be updated
+	- ***Body*** 
+		- *any + _id*: The information to be used in the database (replaces previous entry that has thissame _id)
+		
 - ### *POST* /sendMessage
+	- ***Body*** 
+		- *to*: The number to send the message to
+		- *message*: The message to send to the *to* field
 
 ### Usage
 ---
    - ### General
+      ```sh
+      git clone https://github.com/AbdulBaseetShabi/TheMarketPlace
+      ```
    - ### Client 
+     ```sh
+     cd Client
+     npm start
+     ```
    - ### Server 
+     ```sh
+     cd Server
+     npm start
+     ```
