@@ -1,13 +1,13 @@
 # The Market Place
 ## Table of Content 
- - [About The Application](#about-the-application)
+ - [About](#about)
  - [Inspiration](#inspiration)
  - [Technologies](#technologies)
  - [Client Pages](#client-pages)
  - [Server Routes](#server-routes) 
  - [Usage](#usage)
 
-### About the Application 
+### About
 ---
 The Market Place is a web application that allows students to buy and sell used textbooks amongst themselves, with the growth potential to sell other used items, such as, furnitures and appliances.
 
