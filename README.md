@@ -18,7 +18,7 @@ Students generally take about 10 - 15 courses per year and require textbooks and
 ### Technologies 
 ---
 - **The Client side** was built on ***Reactjs*** for the view, ***Firebase Api*** to handle user's authentication and ***Twilio*** for notification messages.
-- **The Server side** was built on ***Nodejs*** and ***MongoDB***
+- **The Server side** was built on ***Nodejs***, ***Twilio API*** and ***MongoDB***
 
 ### Client Pages 
 --- 
